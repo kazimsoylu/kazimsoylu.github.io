@@ -8,7 +8,6 @@ const DISCOUNT_RATES = {
 
 // ===== DOM Elements =====
 const prevEducationInput = document.getElementById('prevEducationFee');
-const prevMealInput = document.getElementById('prevMealFee');
 const newMealInput = document.getElementById('newMealFee');
 const calculateBtn = document.getElementById('calculateBtn');
 const resultsSection = document.getElementById('resultsSection');
@@ -35,7 +34,6 @@ function calculateDiscountedEducation(educationFee, discountRate) {
 function calculate() {
     // Get input values
     const prevEducation = parseFloat(prevEducationInput.value) || 0;
-    const prevMeal = parseFloat(prevMealInput.value) || 0;
     const newMeal = parseFloat(newMealInput.value) || 0;
 
     // Validate inputs
@@ -86,7 +84,7 @@ function calculate() {
 
     // Show results section
     resultsSection.classList.remove('hidden');
-    
+
     // Scroll to results with smooth animation
     setTimeout(() => {
         resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -137,7 +135,7 @@ function showError(message) {
         <span class="toast-icon">⚠️</span>
         <span class="toast-message">${message}</span>
     `;
-    
+
     // Add toast styles
     toast.style.cssText = `
         position: fixed;
@@ -200,15 +198,4 @@ document.querySelectorAll('input').forEach(input => {
             calculate();
         }
     });
-});
-
-// Auto-fill new meal fee when previous meal fee changes (optional convenience)
-prevMealInput.addEventListener('change', () => {
-    if (!newMealInput.value && prevMealInput.value) {
-        // Suggest a slightly higher meal fee as placeholder
-        const prevMeal = parseFloat(prevMealInput.value);
-        if (prevMeal > 0) {
-            newMealInput.placeholder = `Örn: ${Math.round(prevMeal * 1.3)}`;
-        }
-    }
 });
