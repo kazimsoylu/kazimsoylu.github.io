@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Özel okul eğitim ve yemek ücreti hesaplama aracı. Farklı ödeme seçenekleri ile indirimli fiyatları görün.">
+    <title>Özel Okul Ücreti Hesaplama</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-animation">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+    
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                    <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                </svg>
+            </div>
+            <h1>Özel Okul Ücreti Hesaplama</h1>
+            <p class="subtitle">2024-2025 Eğitim Dönemi Ücret Hesaplayıcı</p>
+        </header>
+
+        <main class="main-content">
+            <section class="input-section glass-card">
+                <h2>
+                    <span class="section-icon">📊</span>
+                    Geçmiş Yıl Bilgileri
+                </h2>
+                
+                <div class="input-group">
+                    <label for="prevEducationFee">
+                        <span class="label-icon">📚</span>
+                        Önceki Yıl Eğitim Ücreti (₺)
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="number" id="prevEducationFee" placeholder="Örn: 150000" min="0" step="0.01">
+                        <span class="currency-symbol">₺</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="prevMealFee">
+                        <span class="label-icon">🍽️</span>
+                        Önceki Yıl Yemek Ücreti (₺)
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="number" id="prevMealFee" placeholder="Örn: 25000" min="0" step="0.01">
+                        <span class="currency-symbol">₺</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="newMealFee">
+                        <span class="label-icon">🍴</span>
+                        Yeni Yıl Yemek Ücreti (₺)
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="number" id="newMealFee" placeholder="Örn: 35000" min="0" step="0.01">
+                        <span class="currency-symbol">₺</span>
+                    </div>
+                </div>
+
+                <button id="calculateBtn" class="calculate-btn">
+                    <span class="btn-icon">🧮</span>
+                    Hesapla
+                </button>
+            </section>
+
+            <section id="resultsSection" class="results-section hidden">
+                <div class="info-card glass-card">
+                    <h3>
+                        <span class="section-icon">📈</span>
+                        Yeni Yıl Eğitim Ücreti
+                    </h3>
+                    <div class="info-row">
+                        <span>Önceki Yıl Eğitim Ücreti:</span>
+                        <span id="displayPrevEducation" class="value">-</span>
+                    </div>
+                    <div class="info-row highlight">
+                        <span>Artış Oranı:</span>
+                        <span class="badge">%30.74</span>
+                    </div>
+                    <div class="info-row total">
+                        <span>Yeni Eğitim Ücreti:</span>
+                        <span id="displayNewEducation" class="value">-</span>
+                    </div>
+                </div>
+
+                <h2 class="section-title">
+                    <span class="section-icon">💳</span>
+                    Ödeme Seçenekleri
+                </h2>
+
+                <div class="payment-options">
+                    <div class="payment-card glass-card best-deal">
+                        <div class="ribbon">En Avantajlı</div>
+                        <div class="payment-icon">💵</div>
+                        <h3>Peşin Ödeme</h3>
+                        <div class="discount-badge">%8 İndirim</div>
+                        <div class="price-breakdown">
+                            <div class="breakdown-row">
+                                <span>İndirimli Eğitim:</span>
+                                <span id="cashEducation">-</span>
+                            </div>
+                            <div class="breakdown-row">
+                                <span>Yemek Ücreti:</span>
+                                <span id="cashMeal">-</span>
+                            </div>
+                        </div>
+                        <div class="total-price">
+                            <span>Toplam:</span>
+                            <span id="cashTotal" class="price">-</span>
+                        </div>
+                        <div class="savings">
+                            <span id="cashSavings">-</span> tasarruf
+                        </div>
+                    </div>
+
+                    <div class="payment-card glass-card">
+                        <div class="payment-icon">💳</div>
+                        <h3>Kredi Kartı Tek Çekim</h3>
+                        <div class="discount-badge">%6 İndirim</div>
+                        <div class="price-breakdown">
+                            <div class="breakdown-row">
+                                <span>İndirimli Eğitim:</span>
+                                <span id="ccSingleEducation">-</span>
+                            </div>
+                            <div class="breakdown-row">
+                                <span>Yemek Ücreti:</span>
+                                <span id="ccSingleMeal">-</span>
+                            </div>
+                        </div>
+                        <div class="total-price">
+                            <span>Toplam:</span>
+                            <span id="ccSingleTotal" class="price">-</span>
+                        </div>
+                        <div class="savings">
+                            <span id="ccSingleSavings">-</span> tasarruf
+                        </div>
+                    </div>
+
+                    <div class="payment-card glass-card">
+                        <div class="payment-icon">📅</div>
+                        <h3>Kredi Kartı 8 Taksit</h3>
+                        <div class="discount-badge">%3 İndirim</div>
+                        <div class="price-breakdown">
+                            <div class="breakdown-row">
+                                <span>İndirimli Eğitim:</span>
+                                <span id="cc8Education">-</span>
+                            </div>
+                            <div class="breakdown-row">
+                                <span>Yemek Ücreti:</span>
+                                <span id="cc8Meal">-</span>
+                            </div>
+                        </div>
+                        <div class="total-price">
+                            <span>Toplam:</span>
+                            <span id="cc8Total" class="price">-</span>
+                        </div>
+                        <div class="installment-info">
+                            Aylık Taksit: <span id="cc8Monthly" class="installment">-</span>
+                        </div>
+                        <div class="savings">
+                            <span id="cc8Savings">-</span> tasarruf
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-card glass-card">
+                    <h3>
+                        <span class="section-icon">📊</span>
+                        Karşılaştırma Özeti
+                    </h3>
+                    <div class="comparison-table">
+                        <div class="table-row header">
+                            <span>Ödeme Yöntemi</span>
+                            <span>İndirim</span>
+                            <span>Toplam</span>
+                        </div>
+                        <div class="table-row">
+                            <span>İndirimsiz</span>
+                            <span>-</span>
+                            <span id="noDiscountTotal">-</span>
+                        </div>
+                        <div class="table-row">
+                            <span>Peşin</span>
+                            <span>%8</span>
+                            <span id="compCashTotal">-</span>
+                        </div>
+                        <div class="table-row">
+                            <span>K.K. Tek Çekim</span>
+                            <span>%6</span>
+                            <span id="compCcSingleTotal">-</span>
+                        </div>
+                        <div class="table-row">
+                            <span>K.K. 8 Taksit</span>
+                            <span>%3</span>
+                            <span id="compCc8Total">-</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>© 2024 Okul Ücreti Hesaplama | Eğitim ücreti artış oranı: %30.74</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
